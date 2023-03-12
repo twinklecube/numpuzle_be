@@ -1,6 +1,7 @@
 import express, {Express, Request, Response, ErrorRequestHandler, NextFunction} from 'express';
 import dotenv from "dotenv";
 import router from "./routes/routes";
+import cors from "cors";
 
 dotenv.config();
 
@@ -8,7 +9,9 @@ const app: Express = express();
 const port = process.env.PORT;
 
 app.use(express.json());
+app.use(cors());
 app.use(router);
+
 
 app.use((req: Request, res: Response, next: NextFunction) => {
    next({
